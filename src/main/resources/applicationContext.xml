@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:context="http://www.springframework.org/schema/context"
+ xmlns:tx="http://www.springframework.org/schema/tx"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="repository" class="com.persistence.repository.WebSiteRepositoryImpl"> 
+        
+    </bean>
+    
+    
+    
+    <bean id="service" class="com.controller.WebSiteController"> 
+        <property name="repository" ref="repository"/>
+    </bean>
+    
+    <bean id="entityManagerFactory"
+            class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="myPersistenceUnit" />
+        <property name="packagesToScan" >
+            <list>
+                <value>com.persistence.entity</value>
+            </list>
+        </property>
+          <property name="dataSource" ref="dataSource" />
+          <property name="jpaVendorAdapter">
+              <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                  <property name="generateDdl" value="true" />
+                  <property name="database" value="H2" />
+              </bean>
+          </property>
+     </bean>
+
+<!--     <bean class="org.springframework.orm.jpa.JpaTransactionManager"
+        id="transactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>-->
+     <bean id="dataSource"
+            class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+          <property name="driverClassName" value="org.h2.Driver" />
+          <property name="url" value="jdbc:h2:file:~/test" />
+          <property name="username" value="sa" />
+          <property name="password" value="" />
+    </bean>
+   
+ </beans>
