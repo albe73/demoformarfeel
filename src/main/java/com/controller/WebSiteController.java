@@ -36,7 +36,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class WebSiteController {
     
 	private String logger;
-	
+    private String logg;
+
     @Autowired
     private WebSiteRepositoryImpl repository;
  
