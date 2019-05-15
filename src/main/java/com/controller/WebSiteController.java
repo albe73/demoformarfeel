@@ -35,6 +35,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 @RequestMapping("/websites")
 public class WebSiteController {
     
+	private String logger;
+	
     @Autowired
     private WebSiteRepositoryImpl repository;
  
