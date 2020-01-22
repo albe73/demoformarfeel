@@ -48,7 +48,8 @@ public class WebSiteController {
         this.repository = repository;
     }
     
-    @RequestMapping(value = "/webgrabbing", method = RequestMethod.POST, consumes="application/json")
+    @SuppressWarnings("finally")
+	@RequestMapping(value = "/webgrabbing", method = RequestMethod.POST, consumes="application/json")
     @ResponseBody
     @Transactional
     public List<Boolean> grabbing(@RequestBody String jsonString) {
